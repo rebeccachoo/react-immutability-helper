@@ -4,11 +4,13 @@ import Contact from "./component/Contact";
 
 import Search from "./component/Search";
 import update from "immutability-helper";
+import ContactCreate from "./component/ContactCreate";
 
 class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			selectedKey: -1,
 			keyword: "",
 			contactData: [
 				{ name: "Rebecca", phone: "3932903943" },
@@ -26,15 +28,38 @@ class App extends Component {
 		this.handleEdit = this.handleEdit.bind(this);
 	}
 
+	setSelectedKey = (index) => {
+		this.setState({ selectedKey: index });
+	};
+
 	handleCreate = (contact) => {
 		this.setState({
 			contactData: update(this.state.contactData, { $push: [contact] }),
 		});
 	};
 	handleRemove = () => {
-		// this.setState({ contactData: update(this.state.contactData), {$splice:[[this.state.selectedKey, 1]]} });
+		if (this.state.selectedKey < 0) {
+			return;
+		}
+		this.setState({
+			contactData: update(this.state.contactData, {
+				$splice: [[this.state.selectedKey, 1]],
+			}),
+			selectedKey: -1,
+		});
 	};
-	handleEdit = () => {};
+	handleEdit = (newContact) => {
+		const { name, phone } = newContact;
+
+		this.setState({
+			contactData: update(this.state.contactData, {
+				[this.state.selectedKey]: {
+					name: { $set: name },
+					phone: { $set: phone },
+				},
+			}),
+		});
+	};
 
 	setKeyword = (value) => {
 		this.setState({ keyword: value });
@@ -55,9 +80,21 @@ class App extends Component {
 		let data = this.filter();
 		return (
 			<div className="App">
-				<Search setKeyword={this.setKeyword} />
-				<br />
-				<Contact contactData={data} />
+				<div style={{ display: "flex", flexDirection: "row" }}>
+					<div style={{ width: "50%", paddingTop: "20px" }}>
+						<h1>Contacts</h1>
+						<Search setKeyword={this.setKeyword} />
+						<Contact
+							contactData={data}
+							onRemove={this.handleRemove}
+							changeKey={this.setSelectedKey}
+							updateData={this.handleEdit}
+						/>
+					</div>
+					<div style={{ width: "50%", paddingTop: "20px" }}>
+						<ContactCreate onCreate={this.handleCreate} />
+					</div>
+				</div>
 			</div>
 		);
 	}
