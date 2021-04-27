@@ -9,10 +9,21 @@ Create Function:<br />
 			contactData: update(this.state.contactData, { $push: [contact] }),
 		});`
  
-Remove Function:<br />
+Delete Function:<br />
 `this.setState({
 			contactData: update(this.state.contactData, {
 				$splice: [[this.state.selectedKey, 1]],
 			}),
 			selectedKey: -1,
 		});`
+
+Edit Function:<br />
+`this.setState({
+			contactData: update(this.state.contactData, {
+				[this.state.selectedKey]: {
+					name: { $set: name },
+					phone: { $set: phone },
+				},
+			}),
+		});`
+		
