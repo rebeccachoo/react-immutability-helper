@@ -27,6 +27,22 @@ class App extends Component {
 		this.handleRemove = this.handleRemove.bind(this);
 		this.handleEdit = this.handleEdit.bind(this);
 	}
+	UNSAFE_componentWillMount() {
+		console.log(localStorage);
+		if (localStorage.contactData) {
+			this.setState({ contactData: JSON.parse(localStorage.contactData) });
+		}
+		localStorage.clear();
+	}
+
+	componentDidUpdate(prevProps, prevState) {
+		if (
+			JSON.stringify(prevState.contactData) !==
+			JSON.stringify(this.state.contactData)
+		) {
+			localStorage.contactData = JSON.stringify(this.state.contactData);
+		}
+	}
 
 	setSelectedKey = (index) => {
 		this.setState({ selectedKey: index });

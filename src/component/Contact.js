@@ -4,17 +4,17 @@ import Detail from "./Detail";
 const Contact = (props) => {
 	const [contact, setContact] = useState({ name: "", phone: "" });
 
-	function set(name, phone, index) {
+	const set = (name, phone, index) => {
 		setContact({
 			name: name,
 			phone: phone,
 		});
 		props.changeKey(index);
-	}
-	function removeHandler() {
+	};
+	const removeHandler = () => {
 		setContact({ name: "", phone: "" });
 		props.onRemove();
-	}
+	};
 	const editContact = (newContact) => {
 		props.updateData(newContact);
 	};
