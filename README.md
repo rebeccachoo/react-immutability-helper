@@ -9,8 +9,7 @@ Create Function:<br />
 			contactData: update(this.state.contactData, { $push: [contact] }),
 		});`
   
-<br /><br />
-
+<br /> 
 Remove Function:<br />
 `this.setState({
 			contactData: update(this.state.contactData, {
