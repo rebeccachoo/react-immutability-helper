@@ -29,14 +29,14 @@ Edit Function:<br />
 		
 | Feature | Description |
 | -----: | :----------- |
-|  Initial state | <img src="https://github.com/rebeccachoo/react-tictactoe/blob/main/normal.png?raw=true"  width="400">|
-|  Win | <img src="https://github.com/rebeccachoo/react-tictactoe/blob/main/win.png?raw=true"  width="400">|
-|  Fail | <img src="https://github.com/rebeccachoo/react-tictactoe/blob/main/fail.png?raw=true"  width="400">|
+|  Initial state | <img src="https://github.com/rebeccachoo/react-immutability-helper/blob/main/crud.png?raw=true"  width="400">| 
+
 
 ## Installation
 
 You can simply download the files on your computer. <br />
 In terminal, install by typing `npm install`.  <br /> 
+intall immutability-helper, `npm install immutability-helper --save`.
 And type `npm start` to start the program.
 
 ## Contributing
