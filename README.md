@@ -26,7 +26,7 @@ Edit Function:<br />
 				},
 			}),
 		});`
-		
+		<br /><br />
 | Feature | Description |
 | -----: | :----------- |
 |  Initial state | <img src="https://github.com/rebeccachoo/react-immutability-helper/blob/main/crud.png?raw=true"  width="400">| 
